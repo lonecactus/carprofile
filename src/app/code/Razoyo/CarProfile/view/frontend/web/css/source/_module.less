@@ -1,0 +1,67 @@
+.carprofile-profile-index,
+.carprofile-profile-edit {
+    .car-info {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+
+        .car-image {
+            img {
+                max-width: 300px;
+            }
+        }
+
+        .car-details {
+            margin-left: 2rem;
+
+            .property {
+                font-size: 1.8rem;
+                font-weight: bold;
+            }
+
+            .value {
+                font-size: 1.6rem;
+            }
+        }
+    }
+    .actions-toolbar {
+        margin-top: 2rem;
+
+        .secondary .action.back {
+            display: inline-block;
+        }
+    }
+}
+
+.carprofile-profile-edit {
+    .car-selector {
+        .field {
+            margin-bottom: 1rem;
+            width: 50%;
+
+            .label {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .carprofile-profile-index,
+    .carprofile-profile-edit {
+        .car-info {
+            .car-details {
+                margin-left: 0;
+            }
+        }
+    }
+
+    .carprofile-profile-edit {
+        .car-selector {
+            .field {
+                width: 100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+<?php
+/**
+ * @author    Razoyo <razoyo@razoyo.com>
+ * @copyright Copyright 2024 © Razoyo. All Rights Reserved.
+ */
+
+/**
+ * @var $block \Razoyo\CarProfile\Block\Profile\Index
+ * @var \Razoyo\CarProfile\ViewModel\Profile\Index $viewModel
+ * @var Magento\Framework\Escaper $escaper
+ **/
+
+$viewModel = $block->getData('razoyo_carprofile_index_view_model');
+$savedCar = $viewModel->getSavedCar();
+?>
+<div class="car-info">
+    <div class="car-image">
+        <img src="<?= $escaper->escapeHtml(__($savedCar['image'])); ?>" alt=""/>
+    </div>
+    <div class="car-details">
+        <div>
+            <span class="property"><?= $escaper->escapeHtml(__('Year: ')); ?></span>
+            <span class="value"><?= $escaper->escapeHtml(__($savedCar['year'])); ?></span>
+        </div>
+        <div>
+            <span class="property"><?= $escaper->escapeHtml(__('Make: ')); ?></span>
+            <span class="value"><?= $escaper->escapeHtml(__($savedCar['make'])); ?></span>
+        </div>
+        <div>
+            <span class="property"><?= $escaper->escapeHtml(__('Model: ')); ?></span>
+            <span class="value"><?= $escaper->escapeHtml(__($savedCar['model'])); ?></span>
+        </div>
+        <div>
+            <span class="property"><?= $escaper->escapeHtml(__('MPG: ')); ?></span>
+            <span class="value"><?= $escaper->escapeHtml(__($savedCar['mpg'])); ?></span>
+        </div>
+        <div>
+            <span class="property"><?= $escaper->escapeHtml(__('Price: ')); ?></span>
+            <span class="value"><?= $escaper->escapeHtml(__($savedCar['price'])); ?></span>
+        </div>
+        <div>
+            <span class="property"><?= $escaper->escapeHtml(__('Seats: ')); ?></span>
+            <span class="value"><?= $escaper->escapeHtml(__($savedCar['seats'])); ?></span>
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <a class="button action primary"
+                   href="<?= $escaper->escapeHtml($block->getUrl('carprofile/profile/edit', ['_secure' => false])); ?>"
+                >
+                    <?= $escaper->escapeHtml(__('Edit')); ?>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

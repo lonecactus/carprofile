@@ -1,0 +1,132 @@
+<?php
+/**
+ * @author    Razoyo <razoyo@razoyo.com>
+ * @copyright Copyright 2024 © Razoyo. All Rights Reserved.
+ */
+
+/**
+ * @var $block \Razoyo\CarProfile\Block\Profile\Edit
+ * @var \Razoyo\CarProfile\ViewModel\Profile\Edit $viewModel
+ * @var Magento\Framework\Escaper $escaper
+ **/
+
+$viewModel = $block->getData('razoyo_carprofile_edit_view_model');
+$savedCar = $viewModel->getSavedCarInfo();
+$carList = $viewModel->getCarListFromApi();
+$years = $viewModel->getYears($carList);
+?>
+
+<h2>
+    <?= $escaper->escapeHtml(__('My Car')) ?>
+</h2>
+
+<div class="car-info">
+    <div class="car-image">
+        <img src="<?= $escaper->escapeHtml(__($savedCar['image'])); ?>" alt="" />
+    </div>
+    <div class="car-details">
+        <div>
+            <span class="property"><?= $escaper->escapeHtml(__('Year: ')); ?></span>
+            <span class="value"><?= $escaper->escapeHtml(__($savedCar['year'])); ?></span>
+        </div>
+        <div>
+            <span class="property"><?= $escaper->escapeHtml(__('Make: ')); ?></span>
+            <span class="value"><?= $escaper->escapeHtml(__($savedCar['make'])); ?></span>
+        </div>
+        <div>
+            <span class="property"><?= $escaper->escapeHtml(__('Model: ')); ?></span>
+            <span class="value"><?= $escaper->escapeHtml(__($savedCar['model'])); ?></span>
+        </div>
+        <div>
+            <span class="property"><?= $escaper->escapeHtml(__('MPG: ')); ?></span>
+            <span class="value"><?= $escaper->escapeHtml(__($savedCar['mpg'])); ?></span>
+        </div>
+        <div>
+            <span class="property"><?= $escaper->escapeHtml(__('Price: ')); ?></span>
+            <span class="value"><?= $escaper->escapeHtml(__($savedCar['price'])); ?></span>
+        </div>
+        <div>
+            <span class="property"><?= $escaper->escapeHtml(__('Seats: ')); ?></span>
+            <span class="value"><?= $escaper->escapeHtml(__($savedCar['seats'])); ?></span>
+        </div>
+    </div>
+</div>
+
+<div class="car-selector">
+    <h3><?= $escaper->escapeHtml(__('Choose a New Car')); ?></h3>
+    <form action="<?= $escaper->escapeHtml($block->getUrl('carprofile/profile/save', ['_secure' => false])); ?>">
+        <div class="field selector_year required">
+            <label class="label" for="selector_year">
+                <span><?= $escaper->escapeHtml(__('Year')) ?></span>
+            </label>
+            <div class="control">
+                <select name="selector_year" id="selector_year" title="<?= $escaper->escapeHtml(__('Year')); ?>"
+                        class="input-text"
+                        data-validate="{required:true}">
+                    <option value=""><?= $escaper->escapeHtml(__('Select Year')); ?></option>
+                    <?php foreach ($years as $year): ?>
+                        <option value="<?= $escaper->escapeHtml($year); ?>"><?= $escaper->escapeHtml($year); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+
+        <div class="field selector_make required">
+            <label class="label" for="selector_make">
+                <span><?= $escaper->escapeHtml(__('Make')); ?></span>
+            </label>
+            <div class="control">
+                <select disabled
+                        name="selector_make"
+                        id="selector_make"
+                        title="<?= $escaper->escapeHtml(__('Make')); ?>"
+                        class="input-text"
+                        data-validate="{required:true}"
+                >
+                    <option value=""><?= $escaper->escapeHtml(__('Select Make')); ?></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="field selector_model required">
+            <label class="label" for="selector_model">
+                <span><?= $escaper->escapeHtml(__('Model')); ?></span>
+            </label>
+            <div class="control">
+                <select disabled
+                        name="selector_model"
+                        id="selector_model"
+                        title="<?= $escaper->escapeHtml(__('Model')); ?>"
+                        class="input-text"
+                        data-validate="{required:true}"
+                >
+                    <option value=""><?= $escaper->escapeHtml(__('Select Model')); ?></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" class="action save primary" title="Save Car">
+                    <span><?= $escaper->escapeHtml(__('Save Car')); ?></span>
+                </button>
+            </div>
+            <div class="secondary">
+                <a class="button action back"
+                   href="<?= $escaper->escapeHtml($block->getUrl('carprofile/profile/index', ['_secure' => false])); ?>"
+                >
+                    <span><?= $escaper->escapeHtml(__('Back')); ?></span>
+                </a>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<script>
+    require(['jquery', 'ymmLookup'], function ($, ymmLookup) {
+        var makeUrl = "<?= $escaper->escapeHtml($block->getUrl('carprofile/profile/make', ['_secure' => false])); ?>";
+        var modelUrl = "<?= $escaper->escapeHtml($block->getUrl('carprofile/profile/model', ['_secure' => false])); ?>";
+        ymmLookup(makeUrl, modelUrl);
+    });
+</script>

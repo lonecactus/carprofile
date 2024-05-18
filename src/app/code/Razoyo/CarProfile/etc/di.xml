@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Razoyo <razoyo@razoyo.com>
+ * @copyright   Copyright © 2024 Razoyo. All Rights Reserved.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Razoyo\CarProfile\Api\Data\ProfilesInterface"
+                type="Razoyo\CarProfile\Model\Profiles"/>
+    <preference for="Razoyo\CarProfile\Api\Data\ProfilesSearchResultInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Razoyo\CarProfile\Api\ProfilesRepositoryInterface"
+                type="Razoyo\CarProfile\Model\ProfilesRepository"/>
+</config>

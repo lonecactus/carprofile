@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Razoyo <razoyo@razoyo.com>
+ * @copyright   Copyright © 2024 Razoyo. All Rights Reserved.
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <head>
+        <title>
+            My Car Profile
+        </title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Razoyo\CarProfile\Block\Profile\Index" name="razoyo.carprofile.index" template="Razoyo_CarProfile::profile/index.phtml" cacheable="false" ifconfig="razoyo_carprofile/carprofile_config/enabled">
+                <arguments>
+                    <argument name="razoyo_carprofile_index_view_model" xsi:type="object">Razoyo\CarProfile\ViewModel\Profile\Index</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
